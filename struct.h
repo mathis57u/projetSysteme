@@ -1,0 +1,42 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+#ifndef LISTE_H
+#define LISTE_H
+
+enum Color {PIQUE = 1, CARREAU, TREFLE, COEUR};
+const char* ColorStr[] = {" ", "Pique", "Carreau", "Trefle", "Coeur"};
+enum Value {AS = 1, DEUX, TROIS, QUATRE, CINQ, SIX, SEPT, HUIT, NEUF, DIX, VALET, DAME, ROI};
+const char* ValueStr[] = {" ", "As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Valet", "Dame", "Roi"};
+enum Combination {INIT = 0, NONE, PAIR, DOUBLEPAIR, FULL, FLUSH};
+const char* CombinationStr[] = {" ", "Carte supérieur", "Paire", "Double paire", "Brelan", "Couleur"};
+
+typedef struct
+{
+    enum Color color;	// 1 = pique ; 2 = carreau ; 3 = trèfle ; 4 = coeur
+    enum Value val;		// de 1 (pour as) à 14 (pour roi)
+}Card;
+
+typedef struct
+{
+    int id;
+	int socket;
+    int budget;
+    Card hand[2];
+}Player;
+
+typedef struct
+{
+	Player player;
+	enum Combination comb;
+	enum Value value[5];
+}Winner;
+
+typedef struct 
+{
+	Card card;
+	bool AlreadyDrew;
+}DeckCard;
+
+#endif
